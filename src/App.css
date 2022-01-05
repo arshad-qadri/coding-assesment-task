@@ -1,36 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .App {
-  text-align: center;
+  background: cyan;
 }
 
-.pokmon{
-  width: 300px;
-  height: 500px;
-  box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  padding: 30px;
-}
-.pokmon-container{
-  width: 1200px;
-  margin: 0 auto;
+.pokmon-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  padding: 20px 0;
 }
-.pokmon img{
+.pokmon {
+  width: 300px;
+  height: auto;
+  box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 20px;
+  background: #fff;
+}
+.pokmon img {
   width: 100%;
 }
-.details{
+h5 {
+  font-size: 17px;
+  font-weight: bold;
+}
+.details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0 0 0 ;
-  
+  margin: 10px 0 0 0;
 }
-.details h5{
+.details h5 {
   margin: 0;
 }
-.pokmon p{
+.pokmon p {
   text-align: left;
 }

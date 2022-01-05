@@ -5,13 +5,12 @@ const Pokmon = () => {
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-
   window.onscroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight
     ) {
-      setPage(page + 1);
+      // setPage(page + 1);
       setLimit(limit + 10);
     }
   };
@@ -24,16 +23,16 @@ const Pokmon = () => {
       )
       .then((res) => {
         setData(res);
+        console.log("res", res);
       })
       .catch((err) => {
         console.log("err", err);
       });
     console.log(limit);
-  }, [page, limit]);
+  }, [limit]);
   return (
     <>
-      <h1>pokemon</h1>
-      <div className="pokmon-container">
+      <div className="container mx-auto pokmon-container">
         {data?.data?.data.map((item, i) => {
           return (
             <div className="pokmon" key={i}>
@@ -41,7 +40,25 @@ const Pokmon = () => {
               <div className="details">
                 <h5>{item.name}</h5> <div className="hp">hp : {item.hp} </div>
               </div>
-              <p>{item.artist}</p>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  margin: "8px 0",
+                }}
+              >
+                <h5 className="m-0 ">Attacks :</h5>
+                {item?.attacks?.map((x, ind) => (
+                  <span key={ind} style={{ marginLeft: "5px" }}>
+                    {x.name}
+                    {ind > -1 ? "," : ind - 1 ? "," : ""}
+                  </span>
+                ))}
+              </div>
+              <p className="m-0">
+                <b>Abilities</b> : N/A
+              </p>
             </div>
           );
         })}

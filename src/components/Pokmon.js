@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 const Pokmon = () => {
   const [data, setData] = useState(null);
-  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [mainLoader, setMainLoader] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +34,7 @@ const Pokmon = () => {
 
   useEffect(async () => {
     if (!search) {
-      let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=${limit}`;
+      let url = `https://api.pokemontcg.io/v2/cards?page=1&pageSize=${limit}`;
       await getData(url);
     }
   }, [limit, search]);

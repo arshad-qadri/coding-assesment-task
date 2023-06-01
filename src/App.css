@@ -7,7 +7,6 @@ body {
   background: cyan;
   min-height: 100vh;
   width: 100%;
-  
 }
 .loading {
   width: 100%;
@@ -51,8 +50,23 @@ h5 {
 .pokmon p {
   text-align: left;
 }
-.loader{
+.loader {
   width: 70px;
   height: 70px;
-  
+}
+input {
+  width: 80%;
+  height: 40px;
+}
+button {
+  height: 40px;
+  cursor: pointer;
+}
+form {
+  width: 100%;
+  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
 }

@@ -7,6 +7,7 @@ const Pokmon = () => {
   const [limit, setLimit] = useState(10);
   const [mainLoader, setMainLoader] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
   window.onscroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
@@ -17,29 +18,47 @@ const Pokmon = () => {
     }
   };
 
-  useEffect(() => {
+  const getData = async (url) => {
     setIsLoading(true);
-    axios
-      .get(
-        `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=${limit}`,
-        {}
-      )
+    await axios
+      .get(url, { name: "Ampharos" })
       .then((res) => {
-        setData(res);
+        setData(res.data?.data);
         setIsLoading(false);
         setMainLoader(false);
-        console.log("res", res);
+        console.log("res", res.data?.data);
       })
       .catch((err) => {
         console.log("err", err);
       });
-    console.log(limit);
-  }, [limit]);
+  };
+
+  useEffect(async () => {
+    if (!search) {
+      let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=${limit}`;
+      await getData(url);
+    }
+  }, [limit, search]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let filtered = data.filter((item) => item.name.includes(search));
+    setData(filtered);
+  };
   return (
-    <>
-      <div className="container mx-auto pokmon-container">
-        {!mainLoader ? (
-          data.data.data.map((item, i) => {
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search with name"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div className=" mx-auto pokmon-container">
+        {!mainLoader && data && data.length > 0 ? (
+          data.map((item, i) => {
             return (
               <div className="pokmon" key={i}>
                 <img src={item.images.small} alt={item.name} />
@@ -79,7 +98,7 @@ const Pokmon = () => {
           <p>Loading...</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

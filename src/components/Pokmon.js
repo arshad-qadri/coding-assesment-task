@@ -12,7 +12,6 @@ const Pokmon = () => {
       window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight
     ) {
-      // setPage(page + 1);
       setLimit(limit + 10);
     }
   };
@@ -20,12 +19,11 @@ const Pokmon = () => {
   const getData = async (url) => {
     setIsLoading(true);
     await axios
-      .get(url, { name: "Ampharos" })
+      .get(url)
       .then((res) => {
         setData(res.data?.data);
         setIsLoading(false);
         setMainLoader(false);
-        console.log("res", res.data?.data);
       })
       .catch((err) => {
         console.log("err", err);

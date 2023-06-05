@@ -16,9 +16,9 @@ const Pokmon = () => {
     }
   };
 
-  const getData = async (url) => {
+  const getData =  (url) => {
     setIsLoading(true);
-    await axios
+     axios
       .get(url)
       .then((res) => {
         setData(res.data?.data);
@@ -30,10 +30,10 @@ const Pokmon = () => {
       });
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!search) {
       let url = `https://api.pokemontcg.io/v2/cards?page=1&pageSize=${limit}`;
-      await getData(url);
+       getData(url);
     }
   }, [limit, search]);
 

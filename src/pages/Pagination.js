@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Paginate from "./components/Paginate";
+import Paginate from "../components/Paginate";
 
 const Pagination = () => {
   const [data, setData] = useState(null);
@@ -11,9 +11,9 @@ const Pagination = () => {
 
   const perPageLimit = 10;
 
-  const getData = async (url) => {
+  const getData =  (url) => {
     setIsLoading(true);
-    await axios
+     axios
       .get(url)
       .then((res) => {
         setData(res.data?.data);
@@ -27,11 +27,14 @@ const Pagination = () => {
       });
   };
 
-  useEffect(async () => {
-    if (!search) {
-      let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=${perPageLimit}`;
-      await getData(url);
-    }
+  useEffect( () => {
+  
+
+      if (!search) {
+        let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=${perPageLimit}`;
+         getData(url);
+      }
+   
   }, [perPageLimit, search, page]);
 
   const handleSubmit = async (e) => {

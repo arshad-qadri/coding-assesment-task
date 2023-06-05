@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Pokmon from "./components/Pokmon";
-import Pagination from "./Pagination";
+import Pokmon from "./pages/Pokmon";
+import Pagination from "./pages/Pagination";
 import Nav from "./components/Nav";
 
 function App() {
